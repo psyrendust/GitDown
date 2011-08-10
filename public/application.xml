@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<application xmlns="http://ns.adobe.com/air/application/2.0">
+				<filename>AirMarkdown</filename>
+				<description>AirMarkdown is an Air application that provides a simulated live preview of GitHub Flavored Markdown.</description>
+				<customUpdateUI>false</customUpdateUI>
+				<name>AirMarkdown</name>
+				<id>AirMarkdown</id>
+  <version>1.0</version>
+  <initialWindow>
+    <content>index.html</content>
+    <height>600</height>
+    <width>935</width>
+    <systemChrome>standard</systemChrome>
+    <transparent>false</transparent>
+    <visible>true</visible>
+  </initialWindow>
+</application>
