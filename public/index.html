@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <title>AirMarkdown</title>
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="stylesheet" href="css/custom.css?v=1">
+
+    <script src="js/libs/modernizr-1.7.min.js"></script>
+    <script src="js/AIRAliases.js"></script>
+    <script src="js/upskirt.js"></script>
+    <script src="js/upskirt_ems.js"></script>
+    <script src="js/libs/jquery-1.6.2.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script>
+        var airMarkdown_currentFile; // The current file in the editor.
+        var airMarkdown_stream; // A FileStream object, used to read and write files.
+        var airMarkdown_defaultDir; // The default directory location.
+        var airMarkdown_chooserMode; // Whether the FileChooser.html window is used as an Open or Save As window.
+        
+        /**
+         * Initializes the UI.
+         */
+        function airMarkdown_init() {
+            //document.title = "Text Editor";
+            airMarkdown_defaultDir = air.File.userDirectory;
+http://airmarkdown.local/:25Uncaught TypeError: Cannot read property 'File' of undefined
+            $('#airMarkdown_selectMarkdownBtn').click(function(){
+                airMarkdown_openFileDB();
+            });
+            $('#airMarkdown_refreshBtn').css('opacity', '0.5').unbind('click');
+            $(window).bind('focus', function(){
+                airMarkdown_refresh();
+            });
+        }
+        
+        /**
+         * Refreshes the current file.
+         */
+        
+        function airMarkdown_refresh() {
+            if(!airMarkdown_stream) return;
+            airMarkdown_stream = new air.FileStream();
+            try 
+            {
+                airMarkdown_stream.open(airMarkdown_currentFile, air.FileMode.READ);
+                var str = airMarkdown_stream.readUTFBytes(airMarkdown_stream.bytesAvailable);
+                airMarkdown_stream.close();
+                $("#airMarkdown_main").empty().append(markdown(str));
+                document.title = "AirMarkdown - " + airMarkdown_currentFile.name + " - updated: " + getCurrentTime();
+            } 
+            catch(error) 
+            {
+                airMarkdown_ioErrorHandler(error);
+            }
+        }
+        
+        /**
+         * Displays the FileChooser.html file in a new window, and sets its mode to "Open".
+         */
+        function airMarkdown_openFileDB() {
+            var airMarkdown_fileChooser;
+            if(airMarkdown_currentFile)
+            {
+                airMarkdown_fileChooser = airMarkdown_currentFile;
+            }
+            else
+            {
+                airMarkdown_fileChooser = airMarkdown_defaultDir;
+            }
+            airMarkdown_fileChooser.browseForOpen("Open");
+            airMarkdown_fileChooser.addEventListener(air.Event.SELECT, airMarkdown_openFile);
+        }
+
+        /**
+         * Opens and reads a file. 
+         */
+        function airMarkdown_openFile(event) {
+            airMarkdown_stream = new air.FileStream();
+            try 
+            {
+                airMarkdown_currentFile = event.target;
+                airMarkdown_stream.open(airMarkdown_currentFile, air.FileMode.READ);
+                var str = airMarkdown_stream.readUTFBytes(airMarkdown_stream.bytesAvailable);
+                airMarkdown_stream.close();
+                $("#airMarkdown_main").empty().append(markdown(str));
+                document.title = "AirMarkdown - " + airMarkdown_currentFile.name + " - updated: " + getCurrentTime();
+                $('#airMarkdown_refreshBtn').css('opacity', '1').click(function(){
+                    airMarkdown_refresh();
+                });
+            } 
+            catch(error) 
+            {
+                airMarkdown_ioErrorHandler(error);
+            }
+            event.target.removeEventListener(air.Event.SELECT, airMarkdown_openFile); 
+            
+        }
+
+        /**
+         * Displays the "Save As" dialog box.
+         */
+        function airMarkdown_saveAs() {
+            var airMarkdown_fileChooser;
+            if(airMarkdown_currentFile)
+            {
+                airMarkdown_fileChooser = airMarkdown_currentFile;
+            }
+            else
+            {
+                airMarkdown_fileChooser = airMarkdown_defaultDir;
+            }
+            airMarkdown_fileChooser.browseForSave("Save");
+            airMarkdown_fileChooser.addEventListener(air.Event.SELECT, airMarkdown_saveAsSelectHandler);
+        }   
+        function airMarkdown_saveAsSelectHandler(event) {
+            airMarkdown_currentFile = event.target;
+            event.target.removeEventListener(air.Event.SELECT, airMarkdown_saveAsSelectHandler);
+            airMarkdown_saveFile();
+        }
+
+        /**
+         * Opens and saves a file with the data in the mainText textArea element. 
+         * Newline (\n) characters in the text are replaced with the 
+         * platform-specific line ending character (File.lineEnding), which is the 
+         * line-feed character on Mac OS and the carriage return character followed by the 
+         * line-feed character on Windows.
+         */
+        function airMarkdown_saveFile() {
+            if (airMarkdown_currentFile == null) 
+            {
+                airMarkdown_saveAs();
+            } 
+            else 
+            {
+                try 
+                {
+                    airMarkdown_stream = new air.FileStream();
+                    airMarkdown_stream.open(airMarkdown_currentFile, air.FileMode.WRITE);
+                    var outData = document.getElementById("mainText").value;
+                    outData = outData.replace(/\n/g, air.File.lineEnding);
+                    airMarkdown_stream.writeUTFBytes(outData);
+                    airMarkdown_stream.close();
+                    //document.title = "Text Editor - " + currentFile.name;
+                } 
+                catch(error) 
+                {
+                    airMarkdown_ioErrorHandler(error);
+                }
+            }
+        }       
+
+        /**
+         * Error message for file I/O errors. 
+         */
+        function airMarkdown_ioErrorHandler(error) {
+            alert("Error reading or writing the file.", error);
+        }
+        function openBrowser(_url) {
+            try{
+                var _urlReq = new air.URLRequest(_url); 
+                air.navigateToURL(_urlReq);
+            }catch(e){
+                alert('openbrowser', e);
+            }
+            
+        }
+        function openCheatSheet() {
+            var initOptions = new air.NativeWindowInitOptions();
+http://airmarkdown.local/:167Uncaught TypeError: Cannot read property 'NativeWindowInitOptions' of undefined
+            initOptions.maximizable = false;
+            initOptions.resizable = false;
+            var screenWidth = 826;
+            var screenHeight = 565;
+            var bounds = new air.Rectangle(Math.round((screen.width-screenWidth)/2), Math.round((screen.height-screenHeight)/2), screenWidth, screenHeight);
+            var html2 = air.HTMLLoader.createRootWindow(true, initOptions, false, bounds);
+            var urlReq2 = new air.URLRequest("cheatSheet.html");
+            html2.load(urlReq2);
+            html2.stage.nativeWindow.activate();
+        }
+        function getCurrentTime(){
+            var date = new Date();
+            var hours = date.getHours();
+            var mins = date.getMinutes();
+            var secs = date.getSeconds();
+            var time = "am";
+            if(hours == 0){
+                hours = 12;
+                time = "AM";
+            }else if(hours > 11){
+                hours = hours - 12;
+                time = "PM";
+            }
+            if(mins < 10){
+                mins = "0" + mins;
+            }
+            if(secs < 10){
+                secs = "0" + secs;
+            }
+            return hours + ":" + mins + ":" + secs + " " + time;
+        }
+    </script>
+</head>
+<body onLoad="airMarkdown_init();">
+    <div id="airMarkdown_container">
+        <header id="airMarkdown_menu">
+            <a id="airMarkdown_selectMarkdownBtn" class="select-file-link"><span>Select Markdown File</span></a>&nbsp;&nbsp;<a id="airMarkdown_refreshBtn" class="refresh-file-link"><span>Refresh</span></a>&nbsp;&nbsp;<a id="airMarkdown_refreshBtn" class="refresh-file-link" onClick="openCheatSheet();"><span>Markdown Cheat Sheet</span></a><span class="acknowledgement">powered by <a href="javascript:void(0);" onClick="openBrowser('https://github.com/tanoku/jsupskirt');">jsupskirt</a></span>
+        </header>
+
+        <div class="wikistyle" id="airMarkdown_main" role="main">
+            <h2>About</h2>
+            <p>
+                AirMarkdown is an Air application that provides a simulated live preview of <a href="javascript:void(0);" onClick="openBrowser('http://github.github.com/github-flavored-markdown/');">GitHub Flavored Markdown</a>.
+            </p>
+            <h2>Usage</h2>
+            <p>
+                <h4>Open</h4>
+                To open a markdown formatted document click on the <a id="airMarkdown_selectMarkdownBtn" onClick="airMarkdown_openFileDB();" class="select-file-link"><span>Select Markdown File</span></a> button.<br/><br/>
+                <h4>Refresh</h4>
+                To view changes that you have made to your document click on the <a id="airMarkdown_refreshBtn" onClick="airMarkdown_refresh();" class="refresh-file-link"><span>Refresh</span></a> button. A document refresh will also occur when AirMarkdown regains application focus.<br/><br/>
+                <h4>Markdown Cheat Sheet</h4>
+                To view a cheat sheet of markdown syntax click on the <a id="airMarkdown_refreshBtn" class="refresh-file-link" onClick="openCheatSheet();"><span>Markdown Cheat Sheet</span></a> button.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

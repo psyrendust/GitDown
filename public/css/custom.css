@@ -1,0 +1,396 @@
+@charset "UTF-8";
+/* CSS Document */
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font: 13.34px helvetica,arial,freesans,clean,sans-serif;
+    line-height: 1.4;
+    background: #ffffff;
+}
+
+#airMarkdown_menu {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 908px;
+    height: 33px;
+    padding: 0px 5px;
+    margin: 0px auto;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+    border: 1px solid #ccc;
+    color: #333;
+    background: url('images/file_head.gif') 0 0 repeat-x #eee;
+    font-size: 12px;
+}
+#airMarkdown_menu .acknowledgement {
+    float: right;
+    height: 24px;
+    display: inline-block;
+    line-height: 24px;
+    margin-top: 3px;
+    margin-right: 6px;
+}
+a,
+a:hover,
+a:visited,
+a:link {
+    text-decoration: none;
+    color: #4183C4;
+    font-weight: bold;
+}
+a:hover {
+    text-decoration: underline;
+}
+a.select-file-link,
+a.select-file-link:hover,
+a.select-file-link:visited,
+a.select-file-link:link,
+a.refresh-file-link,
+a.refresh-file-link:hover,
+a.refresh-file-link:visited,
+a.refresh-file-link:link {
+    display: inline-block;
+    height: 24px;
+    padding: 0px 0px 0px 3px;
+    margin-top: 3px;
+    font-size: 12px;
+    text-shadow: 1px 1px 0 white;
+    border: 1px solid #D4D4D4;
+    cursor: pointer;
+    color: #333;
+    -webkit-border-radius: 3px;
+    text-decoration:none;
+    background: -webkit-gradient(linear,left top,left bottom,from(#F4F4F4),to(#ECECEC));
+}
+a.select-file-link:hover,
+a.refresh-file-link:hover {
+    color: #fff;
+    /*background: -webkit-gradient(linear,left top,left bottom,from(#599BDC),to(#29639C));*/
+    background: -webkit-gradient(linear,left top,left bottom,from(#599BDC),to(#3173B4));
+    text-shadow: -1px -1px 0 #666;
+    border: 1px solid #518CC6;
+}
+a.select-file-link span,
+a.refresh-file-link span {
+    height: 24px;
+    padding: 0px 10px 0px 8px;
+    line-height: 24px;
+    display: block;
+}
+#airMarkdown_main {
+    width: 900px;
+    margin: 0px auto;
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-top: none ;
+    background-color: #F8F8F8;
+    min-height: 100px;
+}
+h2,h3 {
+    margin: 1em 0;
+}
+.wikistyle h1,
+.wikistyle h2,
+.wikistyle h3,
+.wikistyle h4,
+.wikistyle h5,
+.wikistyle h6 {
+    border: 0!important;
+}
+.wikistyle h1 {
+    font-size: 170%!important;
+    border-top: 4px solid #aaa!important;
+    padding-top: .5em!important;
+    margin-top: 1.5em!important;
+}
+
+.wikistyle h1:first-child {
+    margin-top: 0!important;
+    padding-top: .25em!important;
+    border-top: none!important;
+}
+
+.wikistyle h2 {
+    font-size: 150%!important;
+    margin-top: 1.5em!important;
+    border-top: 4px solid #e0e0e0!important;
+    padding-top: .5em!important;
+}
+
+.wikistyle h3 {
+    margin-top: 1em!important;
+}
+
+.wikistyle hr {
+    border: 1px solid #ddd;
+}
+
+.wikistyle p {
+    line-height: 1.5em!important;
+    margin: 1em 0!important;
+}
+
+.wikistyle ul ul,
+.wikistyle ul ol,
+.wikistyle ol ol,
+.wikistyle ol ul,
+#wiki-form .content-body ul ul,
+#wiki-form .content-body ul ol,
+#wiki-form .content-body ol ol,
+#wiki-form .content-body ol ul {
+    margin-top: 0!important;
+    margin-bottom: 0!important;
+}
+
+.wikistyle blockquote {
+    border-left: 5px solid #ddd!important;
+    padding-left: .6em!important;
+    color: #555!important;
+    margin: 1em 0!important;
+}
+
+.wikistyle dt {
+    font-weight: 700!important;
+    margin-left: 1em!important;
+}
+
+.wikistyle dd {
+    margin-left: 2em!important;
+    margin-bottom: 1em!important;
+}
+
+.wikistyle table {
+    margin: 1em 0!important;
+}
+
+.wikistyle table th {
+    border-bottom: 1px solid #bbb!important;
+    padding: .2em 1em!important;
+}
+
+.wikistyle table td {
+    border-bottom: 1px solid #ddd!important;
+    padding: .2em 1em!important;
+}
+
+.wikistyle a code,
+.wikistyle a:link code,
+.wikistyle a:visited code {
+    color: #4183c4!important;
+}
+
+.wikistyle pre.console {
+    font-size: 12px!important;
+    background-color: #000!important;
+    line-height: 1.5em!important;
+    color: #FFF!important;
+    margin: 1em 0!important;
+    padding: .5em!important;
+}
+
+.wikistyle pre.console code {
+    font-size: 12px!important;
+    background-color: #000!important;
+    border: none!important;
+    color: #FFF!important;
+    padding: 0!important;
+}
+
+.wikistyle pre.console span {
+    color: #888!important;
+}
+
+.wikistyle pre.console span.command {
+    color: #FF0!important;
+}
+
+.wikistyle .frame {
+    display: inline-block;
+    margin: 0;
+}
+
+.wikistyle .frame>span {
+    display: block;
+    border: 1px solid #aaa;
+    padding: 4px;
+}
+
+.wikistyle .frame span span {
+    display: block;
+    font-size: 10pt;
+    text-align: center;
+    line-height: 10pt;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    margin: 0;
+    padding: 4px 0 2px;
+}
+
+.wikistyle .float-left {
+    float: left;
+    padding: .5em 1em .25em 0;
+}
+
+.wikistyle .float-right {
+    float: right;
+    padding: .5em 0 .25em 1em;
+}
+
+.wikistyle .align-left {
+    display: block;
+    text-align: left;
+}
+
+.wikistyle .align-right {
+    display: block;
+    text-align: right;
+}
+
+.wikistyle pre {
+    font-size: 12px;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    color: #444;
+    overflow: auto;
+    -webkit-box-shadow: rgba(0,0,0,0.07) 0 1px 2px inset;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin: 1em 0;
+    padding: 5px;
+}
+
+.wikistyle pre::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+
+.wikistyle pre::-webkit-scrollbar-track-piece {
+    margin-bottom: 10px;
+    background-color: #e5e5e5;
+    border-bottom-left-radius: 4px 4px;
+    border-bottom-right-radius: 4px 4px;
+    border-top-left-radius: 4px 4px;
+    border-top-right-radius: 4px 4px;
+}
+
+.wikistyle pre::-webkit-scrollbar-thumb:vertical {
+    height: 25px;
+    background-color: #ccc;
+    -webkit-border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(255,255,255,1);
+}
+
+.wikistyle pre::-webkit-scrollbar-thumb:horizontal {
+    width: 25px;
+    background-color: #ccc;
+    -webkit-border-radius: 4px;
+}
+
+.wikistyle pre code {
+    font-size: 12px!important;
+    background-color: #eee!important;
+    border: none!important;
+    padding: 0!important;
+}
+
+.wikistyle code {
+    font-size: 12px!important;
+    background-color: #f8f8ff!important;
+    color: #444!important;
+    border: 1px solid #dedede!important;
+    padding: 0 .2em!important;
+}
+.cheatSheetWrapper {
+    background-color: #F5F9FB !important;
+}
+.popup {
+    text-align: left;
+    width: 826px;
+    padding: 3px;
+    padding-bottom: 10px;
+}
+.popup .cheatsheet {
+    width: 800px;
+    overflow: hidden;
+}
+.popup .content {
+    color: #333;
+    font-size: 12px;
+    padding: 10px;
+    background: -webkit-gradient(linear,0% 0,5% 100%,from(#F4F9FB),to(white));
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+.popup .cheatsheet-content {
+    color: #333;
+    font-size: 12px;
+}
+.popup h2 {
+    color: #000 !important;
+}
+.popup h2 {
+    width: 100%;
+    margin: 0 0 10px -10px;
+    padding: 0 10px 10px 10px;
+    font-size: 16px;
+    border-bottom: 1px solid #DDD!important;
+}
+.popup .mod {
+    margin: 0px 0px 10px 0px;
+}
+.popup .cheatsheet .col {
+    width: 260px;
+    margin-right: 10px;
+    float: left;
+    padding: 0px 0px 10px 0px;
+}
+.popup h3 {
+    margin: 0px 0px 5px 0px;
+    font-size: 14px;
+    color: #000;
+}
+.popup .cheatsheet p {
+    margin: 0px 0px 5px 0px;
+    color: #888;
+}
+.popup .cheatsheet pre {
+    padding: 5px;
+    margin: 0px 0px 20px 0px;
+    border: 1px solid #ddd;
+    background: #eee;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+.popup .rule {
+    width: 100%;
+    padding: 0px 10px;
+    margin: 15px 0px;
+    margin-left: -10px;
+    clear: both;
+    overflow: hidden;
+    border-bottom: 1px solid #ddd;
+}
+pre, code {
+    font: 12px 'Bitstream Vera Sans Mono','Courier',monospace;
+}
+p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+.popup .col:last-child {
+    margin-right: 0px;
+}
+.popup .content>p:first-child {
+    margin-top:0;
+}
+
+.popup .content>p:last-child {
+    margin-bottom:0;
+}
