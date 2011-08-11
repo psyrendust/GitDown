@@ -31,7 +31,7 @@
 			$(window).bind('focus', function(){
 				airMarkdown_refresh();
 			});
-			foo = new air.NativeMenuItem("Foo Bar Deluxe");
+			airMarkdown_loadHelp();
 		}
 		
 		/**
@@ -206,66 +206,6 @@
 		</header>
 
 		<div class="wikistyle" id="airMarkdown_main" role="main">
-			<h2>About</h2>
-			<p>
-				AirMarkdown is an Air application that provides a simulated live preview of <a href="javascript:void(0);" onClick="openBrowser('http://github.github.com/github-flavored-markdown/');">GitHub Flavored Markdown</a>.
-			</p>
-			<h2>Usage</h2>
-			<p>
-				<h4>Open</h4>
-				To open a markdown formatted document click on the <a id="airMarkdown_selectMarkdownBtn2" onClick="airMarkdown_openFileDB();" class="custom-button"><span>Select Markdown File</span></a> button.<br/><br/>
-				<h4>Refresh</h4>
-				To view changes that you have made to your document click on the <a id="airMarkdown_refreshBtn2" onClick="airMarkdown_refresh();" class="custom-button"><span>Refresh</span></a> button. A document refresh will also occur when AirMarkdown regains application focus.<br/><br/>
-				<h4>Markdown Cheat Sheet</h4>
-				To view a cheat sheet of markdown syntax click on the <a id="airMarkdown_cheatSheetBtn2" class="custom-button" onClick="openCheatSheet();"><span>Markdown Cheat Sheet</span></a> button.
-			</p>
-			<h2>Acknowledgement</h2>
-			<p>
-				The styling for this application is modeled after <a href="javascript:void(0);" onClick="openBrowser('https://github.com');">GitHub's</a> UI. The Markdown Cheat Sheet is taken from <a href="javascript:void(0);" onClick="openBrowser('http://github.github.com/github-flavored-markdown/');">GitHub's MCS</a>. The markdown processing is handled by <a href="javascript:void(0);" onClick="openBrowser('https://github.com/tanoku');">tanoku's</a> javascript translation of Upskirt called <a href="javascript:void(0);" onClick="openBrowser('https://github.com/tanoku/jsupskirt');">jsupskirt</a>. Unfortunately all references to the Upskirt library have been removed from <a href="javascript:void(0);" onClick="openBrowser('https://github.com');">GitHub</a>.
-			</p>
-			<h2>License</h2>
-			<p>
-				<a rel="license" href="javascript:void(0);" onClick="openBrowser('http://creativecommons.org/licenses/by-nc-sa/3.0/');"><img alt="Creative Commons License" style="border-width:0" src="/resources/images/80x15.png" /></a><br />
-				This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. To view a copy of this license, visit <a href="javascript:void(0);" onClick="openBrowser('http://creativecommons.org/licenses/by-nc-sa/3.0/');">http://creativecommons.org/licenses/by-nc-sa/3.0/</a> or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
-			</p>
-			<h2>Known Bugs</h2>
-			If a link is clicked where the target is set to self, the apps window will redirect to that web page. Currently there are no controls to reset the app window. You will have to restart the app to exit out of this scenario.
-			<hr/>
-			<p>
-				In this implementation of jsupskirt the parsing of the following markdown syntax is not supported and will break the rendering.
-				<h5>Use of multiple Grave accents to encapsulate code blocks is not supported.</h5>
-<pre>
-```
-function foo(){
-	return "bar";
-}
-```
-</pre>
-				<h5>Use of multiple Grave accents with language type to encapsulate code blocks is not supported.</h5>
-<pre>
-```javascript
-function foo(){
-	return "bar";
-}
-```
-</pre>
-				<h5>Use of <code>&lt;pre&gt;</code> tags is not supported.</h5>
-<pre>
-&lt;pre&gt;
-function foo(){
-	return "bar";
-}
-&lt;/pre&gt;
-</pre>
-				<h5>Use of <code>&lt;code&gt;</code> tags is not supported.</h5>
-<pre>
-&lt;code&gt;
-function foo(){
-	return "bar";
-}
-&lt;/code&gt;
-</pre>
-			</p>
 		</div>
 	</div>
 </body>
