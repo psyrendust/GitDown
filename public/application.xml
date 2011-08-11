@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <application xmlns="http://ns.adobe.com/air/application/2.0">
 				<filename>AirMarkdown</filename>
+				<copyright>© 2011 Larry Gordon</copyright>
 				<description>AirMarkdown is an Air application that provides a simulated live preview of GitHub Flavored Markdown.</description>
 				<customUpdateUI>false</customUpdateUI>
 				<name>AirMarkdown</name>
-				<id>AirMarkdown</id>
+				<id>com.psyrendust.AirMarkdown</id>
   <version>1.0</version>
   <initialWindow>
     <content>index.html</content>
