@@ -2,15 +2,15 @@
 <html lang="en" class="no-js">
 <head>
 	<title>AirMarkdown</title>
-	<link rel="stylesheet" href="css/style.css?v=2">
-	<link rel="stylesheet" href="css/custom.css?v=1">
+	<link rel="stylesheet" href="resources/css/style.css?v=2">
+	<link rel="stylesheet" href="resources/css/custom.css?v=1">
 
-	<script src="js/libs/modernizr-1.7.min.js"></script>
-	<script src="js/AIRAliases.js"></script>
-	<script src="js/upskirt.js"></script>
-	<script src="js/upskirt_ems.js"></script>
-	<script src="js/libs/jquery-1.6.2.min.js"></script>
-	<script src="js/plugins.js"></script>
+	<script src="resources/js/libs/modernizr-1.7.min.js"></script>
+	<script src="resources/js/AIRAliases.js"></script>
+	<script src="resources/js/upskirt.js"></script>
+	<script src="resources/js/upskirt_ems.js"></script>
+	<script src="resources/js/libs/jquery-1.6.2.min.js"></script>
+	<script src="resources/js/plugins.js"></script>
 	<script>
 		var airMarkdown_currentFile; // The current file in the editor.
 		var airMarkdown_stream; // A FileStream object, used to read and write files.
@@ -169,7 +169,7 @@
 			var screenHeight = 565;
 			var bounds = new air.Rectangle(Math.round((screen.width-screenWidth)/2), Math.round((screen.height-screenHeight)/2), screenWidth, screenHeight);
 			var html2 = air.HTMLLoader.createRootWindow(true, initOptions, false, bounds);
-			var urlReq2 = new air.URLRequest("cheatSheet.html");
+			var urlReq2 = new air.URLRequest("resources/cheatSheet.html");
 			html2.load(urlReq2);
 			html2.stage.nativeWindow.activate();
 		}
@@ -195,7 +195,7 @@
 			return hours + ":" + mins + ":" + secs + " " + time;
 		}
 		function airMarkdown_loadHelp(){
-			$('#airMarkdown_main').load('help.txt');
+			$('#airMarkdown_main').load('resources/help.txt');
 		}
 	</script>
 </head>
@@ -225,7 +225,7 @@
 			</p>
 			<h2>License</h2>
 			<p>
-				<a rel="license" href="javascript:void(0);" onClick="openBrowser('http://creativecommons.org/licenses/by-nc-sa/3.0/');"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png" /></a><br />
+				<a rel="license" href="javascript:void(0);" onClick="openBrowser('http://creativecommons.org/licenses/by-nc-sa/3.0/');"><img alt="Creative Commons License" style="border-width:0" src="/resources/images/80x15.png" /></a><br />
 				This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. To view a copy of this license, visit <a href="javascript:void(0);" onClick="openBrowser('http://creativecommons.org/licenses/by-nc-sa/3.0/');">http://creativecommons.org/licenses/by-nc-sa/3.0/</a> or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
 			</p>
 			<h2>Known Bugs</h2>
