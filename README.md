@@ -1,6 +1,6 @@
 ## About
 
-AirMarkdown is an Air application that provides a simulated live preview of <a href="http://github.github.com/github-flavored-markdown/" target="_blank">GitHub Flavored Markdown</a>.
+GitDown is an Air application that provides a simulated live preview of <a href="http://github.github.com/github-flavored-markdown/" target="_blank">GitHub Flavored Markdown</a>.
 
 ## Usage
 
@@ -8,7 +8,7 @@ AirMarkdown is an Air application that provides a simulated live preview of <a h
 To open a markdown formatted document click on the <a class="file-edit-link minibutton"><span>Select Markdown File</span></a> button.
 
 #### Refresh
-To view changes that you have made to your document click on the <a class="file-edit-link minibutton"><span>Refresh</span></a> button. A document refresh will also occur when AirMarkdown regains application focus.
+To view changes that you have made to your document click on the <a class="file-edit-link minibutton"><span>Refresh</span></a> button. A document refresh will also occur when GitDown regains application focus.
 
 #### Markdown Cheat Sheet
 To view a cheat sheet of markdown syntax click on the <a class="file-edit-link minibutton"><span>Markdown Cheat Sheet</span></a> button.

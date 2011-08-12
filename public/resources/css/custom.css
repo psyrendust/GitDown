@@ -12,7 +12,7 @@ body {
 	background: #ffffff;
 }
 
-#airMarkdown_menu {
+#gitDown_menu {
 	position: relative;
 	top: 0px;
 	left: 0px;
@@ -23,10 +23,10 @@ body {
 	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
 	border: 1px solid #ccc;
 	color: #333;
-	background: url('images/file_head.gif') 0 0 repeat-x #eee;
+	background: url('../images/file_head.gif') 0 0 repeat-x #eee;
 	font-size: 12px;
 }
-#airMarkdown_menu .acknowledgement {
+#gitDown_menu .acknowledgement {
 	float: right;
 	font-size: 9px;
 	height: 24px;
@@ -76,7 +76,7 @@ a.custom-button span {
 	line-height: 24px;
 	display: block;
 }
-#airMarkdown_main {
+#gitDown_main {
 	width: 900px;
 	margin: 0px auto;
 	padding: 9px;

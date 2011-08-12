@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-	<title>AirMarkdown</title>
+	<title>GitDown</title>
 	<link rel="stylesheet" href="resources/css/style.css?v=2">
 	<link rel="stylesheet" href="resources/css/custom.css?v=1">
 
@@ -10,202 +10,16 @@
 	<script src="resources/js/upskirt.js"></script>
 	<script src="resources/js/upskirt_ems.js"></script>
 	<script src="resources/js/libs/jquery-1.6.2.min.js"></script>
-	<script src="resources/js/plugins.js"></script>
-	<script>
-		var airMarkdown_currentFile; // The current file in the editor.
-		var airMarkdown_stream; // A FileStream object, used to read and write files.
-		var airMarkdown_defaultDir; // The default directory location.
-		var airMarkdown_chooserMode; // Whether the FileChooser.html window is used as an Open or Save As window.
-		var airMarkdown_string;
-		var foo;
-		
-		/**
-		 * Initializes the UI.
-		 */
-		function airMarkdown_init() {
-			airMarkdown_defaultDir = air.File.userDirectory;
-			$('#airMarkdown_selectMarkdownBtn').click(function(){
-				airMarkdown_openFileDB();
-			});
-			$('#airMarkdown_refreshBtn').css('opacity', '0.5').unbind('click');
-			$(window).bind('focus', function(){
-				airMarkdown_refresh();
-			});
-			airMarkdown_loadHelp();
-		}
-		
-		/**
-		 * Refreshes the current file.
-		 */
-		
-		function airMarkdown_refresh() {
-			if(!airMarkdown_stream) return;
-			airMarkdown_stream = new air.FileStream();
-			try 
-			{
-				airMarkdown_stream.open(airMarkdown_currentFile, air.FileMode.READ);
-				airMarkdown_string = airMarkdown_stream.readUTFBytes(airMarkdown_stream.bytesAvailable);
-				airMarkdown_stream.close();
-				$("#airMarkdown_main").empty().append(markdown(airMarkdown_string));
-				document.title = "AirMarkdown - " + airMarkdown_currentFile.name + " - updated: " + getCurrentTime();
-			} 
-			catch(error) 
-			{
-				airMarkdown_ioErrorHandler(error);
-			}
-		}
-		
-		/**
-		 * Displays the FileChooser.html file in a new window, and sets its mode to "Open".
-		 */
-		function airMarkdown_openFileDB() {
-			var airMarkdown_fileChooser;
-			if(airMarkdown_currentFile)
-			{
-				airMarkdown_fileChooser = airMarkdown_currentFile;
-			}
-			else
-			{
-				airMarkdown_fileChooser = airMarkdown_defaultDir;
-			}
-			airMarkdown_fileChooser.browseForOpen("Open");
-			airMarkdown_fileChooser.addEventListener(air.Event.SELECT, airMarkdown_openFile);
-		}
-
-		/**
-		 * Opens and reads a file. 
-		 */
-		function airMarkdown_openFile(event) {
-			airMarkdown_stream = new air.FileStream();
-			try 
-			{
-				airMarkdown_currentFile = event.target;
-				airMarkdown_stream.open(airMarkdown_currentFile, air.FileMode.READ);
-				var str = airMarkdown_stream.readUTFBytes(airMarkdown_stream.bytesAvailable);
-				airMarkdown_stream.close();
-				$("#airMarkdown_main").empty().append(markdown(str));
-				document.title = "AirMarkdown - " + airMarkdown_currentFile.name + " - updated: " + getCurrentTime();
-				$('#airMarkdown_refreshBtn').css('opacity', '1').click(function(){
-					airMarkdown_refresh();
-				});
-			} 
-			catch(error) 
-			{
-				airMarkdown_ioErrorHandler(error);
-			}
-			event.target.removeEventListener(air.Event.SELECT, airMarkdown_openFile); 
-			
-		}
-
-		/**
-		 * Displays the "Save As" dialog box.
-		 */
-		function airMarkdown_saveAs() {
-			var airMarkdown_fileChooser;
-			if(airMarkdown_currentFile)
-			{
-				airMarkdown_fileChooser = airMarkdown_currentFile;
-			}
-			else
-			{
-				airMarkdown_fileChooser = airMarkdown_defaultDir;
-			}
-			airMarkdown_fileChooser.browseForSave("Save");
-			airMarkdown_fileChooser.addEventListener(air.Event.SELECT, airMarkdown_saveAsSelectHandler);
-		}	
-		function airMarkdown_saveAsSelectHandler(event) {
-			airMarkdown_currentFile = event.target;
-			event.target.removeEventListener(air.Event.SELECT, airMarkdown_saveAsSelectHandler);
-			airMarkdown_saveFile();
-		}
-
-		/**
-		 * Opens and saves a file with the data in the mainText textArea element. 
-		 * Newline (\n) characters in the text are replaced with the 
-		 * platform-specific line ending character (File.lineEnding), which is the 
-		 * line-feed character on Mac OS and the carriage return character followed by the 
-		 * line-feed character on Windows.
-		 */
-		function airMarkdown_saveFile() {
-			if (airMarkdown_currentFile == null) 
-			{
-				airMarkdown_saveAs();
-			} 
-			else 
-			{
-				try 
-				{
-					airMarkdown_stream = new air.FileStream();
-					airMarkdown_stream.open(airMarkdown_currentFile, air.FileMode.WRITE);
-					// var outData = document.getElementById("mainText").value;
-					// outData = outData.replace(/\n/g, air.File.lineEnding);
-					var outData = markdown(airMarkdown_string);
-					airMarkdown_stream.writeUTFBytes(outData);
-					airMarkdown_stream.close();
-					//document.title = "Text Editor - " + currentFile.name;
-				} 
-				catch(error) 
-				{
-					airMarkdown_ioErrorHandler(error);
-				}
-			}
-		}		
-
-		/**
-		 * Error message for file I/O errors. 
-		 */
-		function airMarkdown_ioErrorHandler(error) {
-			// alert("Error reading or writing the file.", error);
-		}
-		function openBrowser(_url) {
-			var _urlReq = new air.URLRequest(_url); 
-			air.navigateToURL(_urlReq);
-		}
-		function openCheatSheet() {
-			var initOptions = new air.NativeWindowInitOptions();
-			initOptions.maximizable = false;
-			initOptions.resizable = false;
-			var screenWidth = 826;
-			var screenHeight = 565;
-			var bounds = new air.Rectangle(Math.round((screen.width-screenWidth)/2), Math.round((screen.height-screenHeight)/2), screenWidth, screenHeight);
-			var html2 = air.HTMLLoader.createRootWindow(true, initOptions, false, bounds);
-			var urlReq2 = new air.URLRequest("resources/cheatSheet.html");
-			html2.load(urlReq2);
-			html2.stage.nativeWindow.activate();
-		}
-		function getCurrentTime(){
-			var date = new Date();
-			var hours = date.getHours();
-			var mins = date.getMinutes();
-			var secs = date.getSeconds();
-			var time = "am";
-			if(hours == 0){
-				hours = 12;
-				time = "AM";
-			}else if(hours > 11){
-				hours = hours - 12;
-				time = "PM";
-			}
-			if(mins < 10){
-				mins = "0" + mins;
-			}
-			if(secs < 10){
-				secs = "0" + secs;
-			}
-			return hours + ":" + mins + ":" + secs + " " + time;
-		}
-		function airMarkdown_loadHelp(){
-			$('#airMarkdown_main').load('resources/help.txt');
-		}
-	</script>
+	<script src="resources/js/plugins.js?v2"></script>
+	<script src="resources/js/scripts.js?v1"></script>
 </head>
-<body onLoad="airMarkdown_init();">
-	<div id="airMarkdown_container">
-		<header id="airMarkdown_menu">
-			<a id="airMarkdown_selectMarkdownBtn" class="custom-button"><span>Select Markdown File</span></a>&nbsp;&nbsp;<a id="airMarkdown_refreshBtn" class="custom-button"><span>Refresh</span></a>&nbsp;&nbsp;<a id="airMarkdown_cheatSheetBtn" class="custom-button" onClick="openCheatSheet();"><span>Markdown Cheat Sheet</span></a>&nbsp;&nbsp;<a id="airMarkdown_helpBtn" class="custom-button" onClick="airMarkdown_loadHelp();"><span>Help</span></a><span class="acknowledgement">created by <a href="javascript:void(0);" onClick="openBrowser('https://github.com/psyrendust/');">psyrendust</a> | powered by <a href="javascript:void(0);" onClick="openBrowser('https://github.com/tanoku/jsupskirt');">jsupskirt</a> & <a href="javascript:void(0);" onClick="openBrowser('https://github.com');">GitHub</a></span>
+<body>
+	<div id="gitDown_container">
+		<header id="gitDown_menu">
+			<a id="gitDown_selectMarkdownBtn" class="custom-button"><span>Select Markdown File</span></a>&nbsp;&nbsp;<a id="gitDown_refreshBtn" class="custom-button"><span>Refresh</span></a>&nbsp;&nbsp;<a id="gitDown_cheatSheetBtn" class="custom-button" onClick="gitDown_openCheatSheet();"><span>Markdown Cheat Sheet</span></a>&nbsp;&nbsp;<a id="gitDown_helpBtn" class="custom-button" onClick="gitDown_loadHelp();"><span>Help</span></a><span class="acknowledgement">created by <a href="javascript:void(0);" onClick="gitDown_openBrowser('https://github.com/psyrendust/');">psyrendust</a> | powered by <a href="javascript:void(0);" onClick="gitDown_openBrowser('https://github.com/tanoku/jsupskirt');">jsupskirt</a> & <a href="javascript:void(0);" onClick="gitDown_openBrowser('https://github.com');">GitHub</a></span>
 		</header>
 
-		<div class="wikistyle" id="airMarkdown_main" role="main">
+		<div class="wikistyle" id="gitDown_main" role="main">
 		</div>
 	</div>
 </body>
